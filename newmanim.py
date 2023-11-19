@@ -3,7 +3,7 @@ from openai import OpenAI
 
 try:
     client = OpenAI(
-        api_key="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")
+        api_key="<Enter your API Key HERE **REMOVED FOR SECURITY PURPOSES**>")
     user_query = input("What would you like to ask? ")
     completion = client.chat.completions.create(
         model="gpt-4-1106-preview",
