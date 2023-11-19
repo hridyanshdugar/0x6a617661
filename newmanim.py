@@ -13,9 +13,10 @@ try:
                 "content": """
                 # Manim Script Instructions
 
+
 ## Introduction
 Instruct ChatGPT to create a lengthy, well laid out, extensive Manim script that elegantly demonstrates a mathematical concept or problem. keep in mind the dimensions of the window.
-
+IMPORTANT - it is Create() not ShowCreation()
 ## Overall Structure
 Specify the general structure of the script.
 
@@ -23,11 +24,11 @@ Specify the general structure of the script.
    - Define the scene and its properties.
    - Create any necessary objects.
    - Ensure all objects are instances of `Mobject` or its subclasses.
-   - Position objects to avoid overlap. Global text size is small but legible in such a way that the text does not leave the border. Have enough checks to ensure nothing is going out of boundary.
+   - Position objects to avoid overlap.Keep space between words. Load all symbols properly. Global text size is small but legible in such a way that the text does not leave the border. Have enough checks to ensure nothing is going out of boundary.
 
 2. **Display Mathematical Content**:
    - Include relevant equations or mathematical expressions using `MathTex`.
-   - Ensure proper formatting, including LaTeX when applicable.
+   - Ensure proper formatting, including LaTeX when applicable. Avoid LaTeX compilation errors in all cases. No "Undefined control sequence." Avoid in all cases please.
    - Animate or display mathematical content as needed.
    
 3. **Provide Explanations**:
@@ -54,7 +55,7 @@ Specify the general structure of the script.
    - Double-check the inheritance of custom objects to ensure compatibility.
 
 ## Example Script
-Provide a complete example script based on the instructions above.
+Provide a complete example script based on the instructions above. Keep everything inside the window. Do your best.
 
 ```python
 
@@ -143,7 +144,7 @@ my_complex_number = complex(2.0, 3.0, 4.0)  # This will raise "complex() takes a
             },
             {
                 "role": "user",
-                "content": f"Just give code. I don't need explanations. use MathTex and keep in mind the size of the window. adjust size of text accordingly. DO NOT exceed boundaries. Query: {user_query}"
+                "content": f"Just give code as plain text no '```' or '```python' in the output. I don't need explanations. use MathTex and keep in mind the size of the window. adjust size of text accordingly. DO NOT exceed boundaries.If there's more content, erase stuff first and then write on it.Go slow, increase wait time. And keep it simple unless programming wise. required. Query: {user_query}"
             }
         ]
 
@@ -158,8 +159,8 @@ manim_script_filename = "generated_manim_script.py"
 lines = response_content.split('\n')
 
 # Remove the first and last lines
-if len(lines) >= 3:
-    modified_lines = lines[1:-1]
+if len(lines) >= 2:
+    modified_lines = lines
 else:
     # Handle the case where there are less than 2 lines
     modified_lines = []
